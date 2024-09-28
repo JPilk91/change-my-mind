@@ -144,12 +144,8 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 import toml
 
-# Load and parse the TOML file
-with open('/Users/user/Desktop/changeMyMindApp/.streamlit/secrets.toml', 'r') as file:
-    secrets = toml.load(file)
-
-# Accessing the dictionary for credentials
-firebase_credentials = secrets['firebase']
+# Accessing the dictionary for credentials directly from Streamlit's secrets
+firebase_credentials = st.secrets['firebase']
 
 # Initialize Firebase
 if not firebase_admin._apps:
