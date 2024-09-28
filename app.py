@@ -144,13 +144,17 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 import toml
 
-# Accessing the dictionary for credentials directly from Streamlit's secrets
-firebase_credentials = st.secrets['firebase']
+# Accessing and parsing the dictionary for credentials directly from Streamlit's secrets
+if 'firebase' in st.secrets:
+    firebase_creds = st.secrets['firebase']
+    # Ensure private keys are correctly formatted
+    firebase_creds['private_key'] = firebase_creds['private_key'].replace('\\n', '\n')
 
-# Initialize Firebase
-if not firebase_admin._apps:
-    cred = credentials.Certificate(firebase_credentials)  # Use the loaded TOML data
-    firebase_admin.initialize_app(cred)
+    # Initialize Firebase
+    if not firebase_admin._apps:
+        cred = credentials.Certificate(firebase_creds)  # Use the corrected credentials
+        firebase_admin.initialize_app(cred)
+
 db = firestore.client()
 
 # --- Page Configurations ---
