@@ -209,7 +209,7 @@ def intro_page():
     st.write("In this app, you'll engage in conversation with a chatbot driven by a Large Language Model (LLM) designed to push you to think deeply about an opinion you hold.")
 
     # Notification about data use
-    st.write("⚠️ **Note**: This app is a prototype. Your responses will be collected and used for refining and updating its.")
+    st.write("⚠️ **Note**: This app is a prototype. Your responses will be collected and used for refining and updating it.")
 
     # User Inputs
     opinion = st.text_area(
