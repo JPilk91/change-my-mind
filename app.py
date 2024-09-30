@@ -143,11 +143,11 @@ import json
 import firebase_admin
 from firebase_admin import credentials, firestore
 import toml
+import streamlit as st
 
-# Accessing and parsing the dictionary for credentials directly from Streamlit's secrets
+# Make a copy of the firebase credentials from st.secrets and adjust the private key
 if 'firebase' in st.secrets:
-    firebase_creds = st.secrets['firebase']
-    # Ensure private keys are correctly formatted
+    firebase_creds = st.secrets['firebase'].copy()  # Create a copy of the firebase credentials
     firebase_creds['private_key'] = firebase_creds['private_key'].replace('\\n', '\n')
 
     # Initialize Firebase
